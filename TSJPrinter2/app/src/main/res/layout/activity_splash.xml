@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.appbuilders.tsjprinter.Splash">
+
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/logo"
+        android:src="@drawable/tsjcdmx"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:textColor="@color/black"
+        android:background="@color/tsj_trans"
+        android:id="@+id/user"
+        android:visibility="gone"
+        android:hint="Email"
+        android:gravity="center"
+        android:layout_marginBottom="60dp"
+        android:layout_alignBottom="@+id/logo"
+        android:layout_alignStart="@+id/pass" />
+
+    <EditText
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:textColor="@color/black"
+        android:background="@color/tsj_trans"
+        android:id="@+id/pass"
+        android:visibility="gone"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/logo"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:text="Iniciar sesión"
+        android:visibility="gone"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:background="@color/tsj_dark"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="25dp"
+        android:textSize="15dp"
+        android:text="O pasa tu credencial sobre el lector"
+        android:id="@+id/credential"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/logo" />
+
+
+</RelativeLayout>
