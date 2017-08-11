@@ -55,8 +55,8 @@ public class Splash extends AppCompatActivity {
 
                 ReSTClient rest = new ReSTClient(Credentials.getInstance(Splash.this).getUrl() + "ConsultaFolio");
                 ReSTRequest request = new ReSTRequest(ReSTRequest.REST_REQUEST_METHOD_POST, "");
-                request.addField("usuario", "su");
-                request.addField("password", "supervisor123");
+                request.addField("folio", "20000003");
+                request.setRawFields(true);
                 rest.execute(request, new ReSTCallback() {
                     @Override
                     public void onSuccess(ReSTResponse response) {

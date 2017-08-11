@@ -47,11 +47,8 @@ public class ReSTClient {
             int ret = 0;
             try {
                 String parameters = mRequest.buildQuery(ReSTRequest.REST_REQUEST_QUERY_PARAMETERS);
-                //Log.d("DXGO", "PARAMETROS = " + parameters);
                 String fields = mRequest.buildQuery(ReSTRequest.REST_REQUEST_QUERY_FIELDS);
-                //Log.d("DXGO", "CAMPOS = " + fields);
                 String endpoint = mServiceUrl + mRequest.mEndpoint + (parameters.length() >= 0 ? ""/*"?"*/ + parameters : "");
-                //Log.d("DXGO", "ENDPOINT = " + endpoint);
                 URL url = new URL(endpoint);
                 if ( url.getProtocol().compareTo("https") == 0 ) {
                     // Use HTTPS
@@ -70,10 +67,7 @@ public class ReSTClient {
                     conn.setDoOutput(true);
                     OutputStream os = conn.getOutputStream();
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                    //writer.write(fields);
-                    JSONObject obj = new JSONObject();
-                    obj.put("folio", "20000003");
-                    writer.write(obj.toString());
+                    writer.write(fields);
                     writer.flush();
                     writer.close();
                     os.close();
