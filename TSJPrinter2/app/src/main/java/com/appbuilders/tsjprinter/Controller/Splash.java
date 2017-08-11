@@ -1,4 +1,4 @@
-package com.appbuilders.tsjprinter;
+package com.appbuilders.tsjprinter.Controller;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -12,7 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.appbuilders.libraries.Rester.ReSTCallback;
+import com.appbuilders.libraries.Rester.ReSTClient;
+import com.appbuilders.libraries.Rester.ReSTRequest;
+import com.appbuilders.libraries.Rester.ReSTResponse;
+import com.appbuilders.tsjprinter.Credentials;
+import com.appbuilders.tsjprinter.R;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
@@ -45,6 +52,32 @@ public class Splash extends AppCompatActivity {
         this.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ReSTClient rest = new ReSTClient(Credentials.getInstance(Splash.this).getUrl() + "ConsultaFolio");
+                ReSTRequest request = new ReSTRequest(ReSTRequest.REST_REQUEST_METHOD_POST, "");
+                request.addField("usuario", "su");
+                request.addField("password", "supervisor123");
+                rest.execute(request, new ReSTCallback() {
+                    @Override
+                    public void onSuccess(ReSTResponse response) {
+                        Log.d("AB_DEV", "RESPUESTA [" + response.statusCode + "]:  " + response.body);
+                        //webView.loadData(response.body, "text/html; charset=utf-8", "UTF-8");
+                    }
+
+                    @Override
+                    public void onError(ReSTResponse response) {
+
+                        Log.d("AB_DEV", "RESPUESTA [" + response.statusCode + "]:  " + response.body);
+                        String errorMessage;
+                        if (response.statusCode == 404) {
+                            errorMessage = "HUMAN used SEARCH\nBut, it failed!";
+                        } else {
+                            errorMessage = "Error " + Integer.toString(response.statusCode);
+                        }
+                        Toast.makeText(getBaseContext(), errorMessage, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getBaseContext(), "Servidores ocupados o placa incrrecta, intentalo de nuevo", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
             }
         });
